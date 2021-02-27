@@ -5,28 +5,8 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
-    <h3>The server says: {{ greeting }}</h3>
   </div>
 </template>
-
-<script>
-import axios from "axios";
-
-export default {
-  data() {
-    return {
-      greeting: ""
-    };
-  },
-
-  beforeMount() {
-    // Consume service from backend API
-    axios.get("/api/greeting").then(result => {
-      this.greeting = result.data;
-    });
-  }
-};
-</script>
 
 <style lang="scss">
 #app {
