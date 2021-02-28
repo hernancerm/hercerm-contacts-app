@@ -5,7 +5,8 @@
 On the root of the parent Maven project, run: 
 
 ```txt
-mvn clean install spring-boot:run
+mvn clean install
+mvn -pl backend spring-boot:run
 ```
 
 ## Application's behavior
