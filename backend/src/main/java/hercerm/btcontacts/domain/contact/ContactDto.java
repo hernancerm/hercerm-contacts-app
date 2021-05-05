@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public enum ContactDTO {;
+public enum ContactDto {;
 
     // TODO: Add validations
     private interface ContactId { @NotNull long getContactId(); }
@@ -13,7 +13,20 @@ public enum ContactDTO {;
     private interface LastName { @NotNull String getLastName(); }
     private interface Email { String getEmail(); }
     private interface Company { String getCompany(); }
-    private interface PhoneNumber { int getPhoneNumber(); }
+    private interface PhoneNumber { String getPhoneNumber(); }
+
+    public enum Request {;
+        @Data
+        @NoArgsConstructor
+        @AllArgsConstructor
+        public static class Create implements FirstName, LastName, Email, Company, PhoneNumber {
+            public String firstName;
+            public String lastName;
+            public String email;
+            public String company;
+            public String phoneNumber;
+        }
+    }
 
     public enum Response {;
         @Data
@@ -26,7 +39,7 @@ public enum ContactDTO {;
             public String lastName;
             public String email;
             public String company;
-            public int phoneNumber;
+            public String phoneNumber;
         }
     }
 }

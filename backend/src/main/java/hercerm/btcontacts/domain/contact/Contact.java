@@ -21,7 +21,7 @@ public class Contact {
     private String email;
 
     private String company;
-    private int phoneNumber;
+    private String phoneNumber;
 
     public Contact(String firstName, String lastName, String email) {
         this.firstName = firstName;
