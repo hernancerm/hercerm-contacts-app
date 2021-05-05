@@ -1,10 +1,11 @@
 package hercerm.btcontacts.domain.contact;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(ContactController.BASE_URL)
@@ -19,7 +20,8 @@ public class ContactController {
     }
 
     @GetMapping
-    public List<ContactDTO.Response.Public> getAllContacts() {
-        return contactService.getAllContacts();
+    public Page<ContactDTO.Response.Public> getContactsPaginated(
+            @PageableDefault(size = 10) Pageable pageable) {
+        return contactService.getContactsPaginated(pageable);
     }
 }

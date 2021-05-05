@@ -1,7 +1,6 @@
 package hercerm.btcontacts.domain.contact;
 
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;

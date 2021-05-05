@@ -1,9 +1,8 @@
 package hercerm.btcontacts.domain.contact;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ContactService {
@@ -14,10 +13,8 @@ public class ContactService {
         this.contactRepository = contactRepository;
     }
 
-    public List<ContactDTO.Response.Public> getAllContacts() {
+    public Page<ContactDTO.Response.Public> getContactsPaginated(Pageable pageable) {
         var contactToPublic = ContactMapper.Response.PublicMapper.INSTANCE;
-        return contactRepository.findAll().stream()
-                .map(contactToPublic::contactToPublic)
-                .collect(Collectors.toList());
+        return contactRepository.findAll(pageable).map(contactToPublic::contactToPublic);
     }
 }
