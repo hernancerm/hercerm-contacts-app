@@ -1,3 +1,4 @@
 server:
-  port: ${PORT:8080}
+  # The default value of server.port is 8080.
+  # This config only makes explicit the defaults.
   baseUrl: http://localhost:${server.port}

@@ -1,2 +1,8 @@
 server:
-  baseUrl: ${BASE_URL:https://immense-scrubland-00077.herokuapp.com}
+  # Heroku provides a port number in the env variable PORT.
+  # This env variable is automatically created by Heroku.
+  port: ${PORT}
+  # Manually set BASE_URL env variable in Heroku for
+  # Spring to load this config. The value should be
+  # the Heroku url for your application.
+  baseUrl: ${BASE_URL}

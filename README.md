@@ -13,7 +13,7 @@ mvn -pl backend spring-boot:run
 
 Once the application is up and running, the following is true:
 
-- Going to `localhost:8098` serves Vue's home page.
+- Going to `localhost:8080` serves Vue's home page.
 - Route navigation through page components (e.g. links) works.
 - Route navigation by directly typing in browser nav bar works.
 - The frontend can talk with the backend without CORS config.
