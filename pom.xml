@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>hercerm</groupId>
-	<artifactId>poc-spring-vue</artifactId>
+	<artifactId>bt-contacts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>poc-spring-vue</name>
-	<description>Proof of concept for a Spring Boot and Vue application</description>
+	<name>bt-contacts</name>
+	<description>Breakable toy contacts app</description>
 
 	<packaging>pom</packaging>
 
