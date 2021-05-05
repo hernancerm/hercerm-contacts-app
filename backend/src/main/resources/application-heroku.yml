@@ -1,0 +1,2 @@
+server:
+  baseUrl: ${BASE_URL:https://immense-scrubland-00077.herokuapp.com}
