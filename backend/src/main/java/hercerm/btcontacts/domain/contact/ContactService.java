@@ -15,15 +15,9 @@ public class ContactService {
     }
 
     public List<ContactDTO.Response.Public> getAllContacts() {
-        return contactRepository.findAll().stream().map(contact -> {
-            return new ContactDTO.Response.Public(
-                    contact.getContactId(),
-                    contact.getFirstName(),
-                    contact.getLastName(),
-                    contact.getEmail(),
-                    contact.getCompany(),
-                    contact.getPhoneNumber()
-                    );
-        }).collect(Collectors.toList());
+        var contactToPublic = ContactMapper.Response.PublicMapper.INSTANCE;
+        return contactRepository.findAll().stream()
+                .map(contactToPublic::contactToPublic)
+                .collect(Collectors.toList());
     }
 }
