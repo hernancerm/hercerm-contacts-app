@@ -1,20 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to your Vue.js and Spring Boot app" />
+    <h1>Contacts App</h1>
     <h3>The server says: {{ greeting }}</h3>
+    <ContactsTablePaginated></ContactsTablePaginated>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 import axios from "axios";
+import ContactsTablePaginated from "@/components/domain/contact/ContactsTablePaginated.vue";
 
 export default {
   name: "Home",
+
   components: {
-    HelloWorld
+    ContactsTablePaginated
   },
 
   data() {
