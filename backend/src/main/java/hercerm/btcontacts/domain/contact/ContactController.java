@@ -35,4 +35,10 @@ public class ContactController {
             @RequestBody ContactDto.Request.Create contactDto, @PathVariable long contactId) {
         return contactService.updateContact(contactDto, contactId);
     }
+
+    @DeleteMapping("/{contactId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteContact(@PathVariable long contactId) {
+        contactService.deleteContact(contactId);
+    }
 }

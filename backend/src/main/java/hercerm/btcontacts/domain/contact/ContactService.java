@@ -39,4 +39,8 @@ public class ContactService {
         Contact updatedContact = contactRepository.save(contact);
         return responsePublicMapper.contactToPublic(updatedContact);
     }
+
+    void deleteContact(long contactId) {
+        contactRepository.findById(contactId).ifPresent(contactRepository::delete);
+    }
 }
