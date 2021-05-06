@@ -4,7 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view />
+    <main class="mx-auto mt-8 mb-24 px-6 lg:px-20 container">
+      <router-view />
+    </main>
   </div>
 </template>
 

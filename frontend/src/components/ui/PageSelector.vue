@@ -46,8 +46,8 @@ export default Vue.extend({
   name: "PageSelector",
 
   props: {
-    totalPages: { type: Number },
-    page: { type: Number }
+    page: { type: Number },
+    totalPages: { type: Number }
   },
 
   data() {
