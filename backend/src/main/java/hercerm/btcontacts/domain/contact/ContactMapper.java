@@ -18,6 +18,7 @@ public enum ContactMapper {;
         public interface PublicMapper {
             PublicMapper INSTANCE = Mappers.getMapper(PublicMapper.class);
             ContactDto.Response.Public contactToPublic(Contact contact);
+            Contact publicToContact(ContactDto.Response.Public contactDto);
         }
     }
 }
