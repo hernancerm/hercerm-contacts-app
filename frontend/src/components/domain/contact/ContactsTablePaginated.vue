@@ -17,6 +17,14 @@
           <td>{{ contact.email }}</td>
           <td>{{ contact.company | emptyFill }}</td>
           <td>{{ contact.phoneNumber | emptyFill }}</td>
+          <td>
+            <button
+              @click="deleteContact(contact.contactId)"
+              class="text-red-600"
+            >
+              Delete
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -54,6 +62,12 @@ export default {
         this.totalPages = result.data.totalPages;
       });
       this.page = pageNumber;
+    },
+
+    deleteContact(contactId) {
+      axios.delete(`/api/contacts/${contactId}`).then(() => {
+        this.loadPage(this.page);
+      });
     }
   },
 
