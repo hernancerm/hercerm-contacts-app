@@ -20,6 +20,12 @@ public class ContactService {
         return contactRepository.findAll(pageable).map(requestPublicMapper::contactToPublic);
     }
 
+    public ContactDto.Response.Public findById(long contactId) {
+        var responsePublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
+        Contact contact = contactRepository.findById(contactId).orElseThrow(ContactNotFoundException::new);
+        return responsePublicMapper.contactToPublic(contact);
+    }
+
     public ContactDto.Response.Public createContact(ContactDto.Request.Create contactDto) {
         var requestCreateMapper = ContactMapper.Request.CreateMapper.INSTANCE;
         var responsePublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;

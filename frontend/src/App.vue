@@ -1,10 +1,7 @@
 <template>
   <div id="app" class="mx-auto mb-24 px-6 lg:px-8 container">
     <nav class="pt-12 pb-8">
-      <router-link :to="{ name: 'ContactsListView' }">Contacts</router-link> |
-      <router-link :to="{ name: 'ContactCreateView' }"
-        >Register contact</router-link
-      >
+      <router-link :to="{ name: 'ContactListView' }">Contacts</router-link>
     </nav>
     <main>
       <router-view />

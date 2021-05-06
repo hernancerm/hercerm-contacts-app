@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <router-link :to="{ name: 'ContactCreateView' }"
+      >Add new contact</router-link
+    >
     <ContactsTablePaginated />
   </div>
 </template>
