@@ -3,9 +3,7 @@ package hercerm.btcontacts.domain.contact;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -18,9 +16,12 @@ public class Contact {
 
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
 
     private String company;
+    @Column(unique = true)
     private String phoneNumber;
 
     public Contact(String firstName, String lastName, String email) {

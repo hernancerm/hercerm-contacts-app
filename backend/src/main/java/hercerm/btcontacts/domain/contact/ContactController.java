@@ -6,6 +6,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(ContactController.BASE_URL)
 public class ContactController {
@@ -26,13 +28,13 @@ public class ContactController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactDto.Response.Public createContact(@RequestBody ContactDto.Request.Create contactDto) {
+    public ContactDto.Response.Public createContact(@Valid @RequestBody ContactDto.Request.Create contactDto) {
         return contactService.createContact(contactDto);
     }
 
     @PutMapping("/{contactId}")
     public ContactDto.Response.Public updateContact(
-            @RequestBody ContactDto.Request.Create contactDto, @PathVariable long contactId) {
+            @Valid @RequestBody ContactDto.Request.Create contactDto, @PathVariable long contactId) {
         return contactService.updateContact(contactDto, contactId);
     }
 
