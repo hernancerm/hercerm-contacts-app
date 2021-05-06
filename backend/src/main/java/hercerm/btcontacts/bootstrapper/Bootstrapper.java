@@ -16,7 +16,7 @@ public class Bootstrapper implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Contact hernan = new Contact("Hernán", "Cervera", "hernan@example.com");
+        Contact hernan = new Contact("Carpenter", "Brut", "carpenter@example.com");
         Contact roman = new Contact("Roman", "Polanski", "roman@example.com");
         Contact darren = new Contact("Darren", "Aronofsky", "darren@example.com");
         Contact vincent = new Contact("Vincent", "Vega", "vincent@example.com");
@@ -28,7 +28,7 @@ public class Bootstrapper implements CommandLineRunner {
         Contact katniss = new Contact("Katniss", "Everdeen", "katsniss@example.com");
         Contact marty = new Contact("Marty", "McFly", "marty@example.com");
         Contact rick = new Contact("Rick", "Sanchez", "rick@example.com");
-        Contact erich = new Contact("Erich", "Fromm", "rick@example.com");
+        Contact erich = new Contact("Erich", "Fromm", "erich@example.com");
 
         contactRepository.save(hernan);
         contactRepository.save(roman);
