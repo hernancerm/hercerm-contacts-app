@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Register contact</h1>
     <form class="space-y-8">
       <div class="flex space-x-8">
         <div class="flex flex-col">
@@ -61,7 +60,7 @@
         @click.prevent="createContact()"
         class="bg-blue-500 text-white py-2 px-3 rounded-sm"
       >
-        Create
+        Save
       </button>
     </form>
   </div>

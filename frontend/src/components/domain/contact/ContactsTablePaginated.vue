@@ -25,6 +25,14 @@
               Delete
             </button>
           </td>
+          <td>
+            <button
+              @click="updateContact(contact.contactId)"
+              class="text-blue-600"
+            >
+              Update
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
