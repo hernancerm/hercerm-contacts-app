@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Contacts App</h1>
+    <h1>Contacts</h1>
     <ContactsTablePaginated />
   </div>
 </template>

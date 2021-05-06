@@ -1,7 +1,7 @@
 <template>
   <div>
-    <table>
-      <thead>
+    <table class="mb-4 border-2 border-gray">
+      <thead class="font-bold">
         <tr>
           <td>First name</td>
           <td>Last name</td>
@@ -15,8 +15,8 @@
           <td>{{ contact.firstName }}</td>
           <td>{{ contact.lastName }}</td>
           <td>{{ contact.email }}</td>
-          <td>{{ contact.company }}</td>
-          <td>{{ contact.phoneNumber }}</td>
+          <td>{{ contact.company | emptyFill }}</td>
+          <td>{{ contact.phoneNumber | emptyFill }}</td>
         </tr>
       </tbody>
     </table>
@@ -59,6 +59,22 @@ export default {
 
   beforeMount() {
     this.loadPage(this.page);
+  },
+
+  filters: {
+    emptyFill(value) {
+      return value === null ? "-" : value;
+    }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+tr {
+  @apply border-2;
+}
+
+td {
+  @apply px-4 py-1;
+}
+</style>
