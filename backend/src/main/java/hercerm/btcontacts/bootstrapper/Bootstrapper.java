@@ -3,9 +3,11 @@ package hercerm.btcontacts.bootstrapper;
 import hercerm.btcontacts.domain.contact.Contact;
 import hercerm.btcontacts.domain.contact.ContactRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("default")
 public class Bootstrapper implements CommandLineRunner {
 
     private final ContactRepository contactRepository;
