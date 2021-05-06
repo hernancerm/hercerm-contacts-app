@@ -26,6 +26,11 @@ public class ContactController {
         return contactService.getContactsPaginated(pageable);
     }
 
+    @GetMapping("/{contactId}")
+    public ContactDto.Response.Public findContactById(@PathVariable long contactId) {
+        return contactService.findById(contactId);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ContactDto.Response.Public createContact(@Valid @RequestBody ContactDto.Request.Create contactDto) {

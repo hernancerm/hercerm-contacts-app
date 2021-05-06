@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import ContactListView from "../views/ContactListView.vue";
 import ContactCreateView from "../views/ContactCreateView.vue";
 import PageNotFoundView from "../views/PageNotFoundView.vue";
 
@@ -9,11 +9,16 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "HomeView",
-    component: HomeView
+    name: "ContactListView",
+    component: ContactListView
   },
   {
-    path: "/create",
+    path: "/add",
+    name: "ContactCreateView",
+    component: ContactCreateView
+  },
+  {
+    path: "/edit/:contactId",
     name: "ContactCreateView",
     component: ContactCreateView
   },

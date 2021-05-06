@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Register contact</h1>
     <form class="space-y-8">
       <div class="flex space-x-8">
         <div class="flex flex-col">
@@ -61,7 +60,7 @@
         @click.prevent="createContact()"
         class="bg-blue-500 text-white py-2 px-3 rounded-sm"
       >
-        Create
+        Save
       </button>
     </form>
   </div>
@@ -75,6 +74,8 @@ export default {
 
   data: function() {
     return {
+      operation: "CREATE",
+      contactId: null,
       contact: {
         firstName: "",
         lastName: "",
@@ -87,8 +88,31 @@ export default {
 
   methods: {
     createContact() {
-      axios.post("/api/contacts", this.contact).then(() => {
-        this.$router.push({ name: "HomeView" });
+      if (this.operation === "CREATE") {
+        axios.post("/api/contacts", this.contact).then(() => {
+          this.$router.push({ name: "ContactListView" });
+        });
+      } else if (this.operation === "UPDATE") {
+        axios.put(`/api/contacts/${this.contactId}`, this.contact).then(() => {
+          this.$router.push({ name: "ContactListView" });
+        });
+      }
+    }
+  },
+
+  mounted() {
+    const pathContactId = this.$route.params.contactId;
+    if (pathContactId) {
+      axios.get(`/api/contacts/${pathContactId}`).then(result => {
+        this.contact = {
+          firstName: result.data.firstName,
+          lastName: result.data.lastName,
+          email: result.data.email,
+          company: result.data.company,
+          phoneNumber: result.data.phoneNumber
+        };
+        this.contactId = result.data.contactId;
+        this.operation = "UPDATE";
       });
     }
   }

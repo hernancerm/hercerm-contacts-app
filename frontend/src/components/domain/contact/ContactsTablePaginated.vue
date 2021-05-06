@@ -25,6 +25,14 @@
               Delete
             </button>
           </td>
+          <td>
+            <button
+              @click="updateContact(contact.contactId)"
+              class="text-blue-600"
+            >
+              Edit
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -67,6 +75,13 @@ export default {
     deleteContact(contactId) {
       axios.delete(`/api/contacts/${contactId}`).then(() => {
         this.loadPage(this.page);
+      });
+    },
+
+    updateContact(contactId) {
+      this.$router.push({
+        name: "ContactCreateView",
+        params: { contactId }
       });
     }
   },
