@@ -1,5 +1,23 @@
 <template>
   <div>
+    <router-link
+      :to="{ name: 'ContactListView' }"
+      class="text-white w-full flex space-x-2 py-2 px-4 bg-blue-500 hover:bg-blue-700 mb-8 rounded-sm"
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        /></svg
+      ><span>Back</span></router-link
+    >
     <form class="space-y-9" @submit.prevent="onSubmit()">
       <InputText
         relate="firstName"
@@ -32,7 +50,7 @@
         :serverError="serverErrors.phoneNumber"
       />
       <button
-        class="bg-blue-500 focus:bg-blue-700 text-white py-2 px-4 rounded-sm"
+        class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-sm w-full text-left"
       >
         Save
       </button>
