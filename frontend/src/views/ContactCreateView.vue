@@ -77,9 +77,14 @@ export default {
             this.serverErrors = error.response.data;
           });
       } else if (this.operation === "UPDATE") {
-        axios.put(`/api/contacts/${this.contactId}`, contact).then(() => {
-          this.$router.push({ name: "ContactListView" });
-        });
+        axios
+          .put(`/api/contacts/${this.contactId}`, contact)
+          .then(() => {
+            this.$router.push({ name: "ContactListView" });
+          })
+          .catch(error => {
+            this.serverErrors = error.response.data;
+          });
       }
     },
 
