@@ -31,7 +31,9 @@
         v-model="contact.phoneNumber"
         :serverError="serverErrors.phoneNumber"
       />
-      <button class="bg-blue-500 text-white py-2 px-4 rounded-sm">
+      <button
+        class="bg-blue-500 focus:bg-blue-700 text-white py-2 px-4 rounded-sm"
+      >
         Save
       </button>
     </form>
