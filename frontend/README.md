@@ -1,24 +1,13 @@
-# frontend
+# Run the frontend on dev mode
 
-## Project setup
-```
-npm install
-```
+This mode gives rapid feedback on the browser to changes made on the Vue project.
 
-### Compiles and hot-reloads for development
-```
+First make sure the server is already running. One way to achieve this is as per the instructions in the [project README.md](../README.md).
+
+Then run:
+
+```txt
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Open the dev server: http://localhost:8081/
