@@ -9,7 +9,7 @@ public enum ContactMapper {;
         @Mapper
         public interface CreateMapper {
             CreateMapper INSTANCE = Mappers.getMapper(CreateMapper.class);
-            Contact createToContact(ContactDto.Request.Create contactDto);
+            Contact createToContact(ContactDto.Request.Base contactDto);
         }
     }
 
