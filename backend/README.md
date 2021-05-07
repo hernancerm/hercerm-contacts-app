@@ -56,7 +56,7 @@ Get a paginated list of contacts, with pagination information.
 }
 ```
 
-Notice that the pagination data is beyond these two properties, but these are the most useful.
+Notice that the pagination data covers more than these two properties, but these are the most useful.
 
 <a id="markdown-get-apicontactscontactid" name="get-apicontactscontactid"></a>
 ### GET /api/contacts/{contactId}
