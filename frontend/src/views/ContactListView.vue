@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <router-link :to="{ name: 'ContactCreateView' }"
+    <router-link :to="{ name: 'ContactCreateOrUpdateView' }"
       >Add new contact</router-link
     >
     <ContactsTablePaginated />

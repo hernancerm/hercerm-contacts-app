@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import ContactListView from "../views/ContactListView.vue";
-import ContactCreateView from "../views/ContactCreateView.vue";
+import ContactCreateOrUpdateView from "../views/ContactCreateOrUpdateView.vue";
 import PageNotFoundView from "../views/PageNotFoundView.vue";
 
 Vue.use(VueRouter);
@@ -14,13 +14,13 @@ const routes = [
   },
   {
     path: "/add",
-    name: "ContactCreateView",
-    component: ContactCreateView
+    name: "ContactCreateOrUpdateView",
+    component: ContactCreateOrUpdateView
   },
   {
     path: "/edit/:contactId",
-    name: "ContactCreateView",
-    component: ContactCreateView
+    name: "ContactCreateOrUpdateView",
+    component: ContactCreateOrUpdateView
   },
   {
     path: "*",

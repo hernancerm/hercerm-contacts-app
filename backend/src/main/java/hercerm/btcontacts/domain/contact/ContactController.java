@@ -1,12 +1,14 @@
 package hercerm.btcontacts.domain.contact;
 
+import hercerm.btcontacts.errors.ContactNotFoundException;
+import hercerm.btcontacts.errors.InvalidContactException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @RequestMapping(ContactController.BASE_URL)
@@ -33,13 +35,13 @@ public class ContactController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactDto.Response.Public createContact(@Valid @RequestBody ContactDto.Request.Create contactDto) {
+    public ContactDto.Response.Public createContact(@RequestBody ContactDto.Request.Base contactDto) {
         return contactService.createContact(contactDto);
     }
 
     @PutMapping("/{contactId}")
     public ContactDto.Response.Public updateContact(
-            @Valid @RequestBody ContactDto.Request.Create contactDto, @PathVariable long contactId) {
+            @RequestBody ContactDto.Request.Base contactDto, @PathVariable long contactId) {
         return contactService.updateContact(contactDto, contactId);
     }
 
@@ -47,5 +49,11 @@ public class ContactController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteContact(@PathVariable long contactId) {
         contactService.deleteContact(contactId);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidContactException.class)
+    public Map<String, String> handleValidationExceptions(InvalidContactException e) {
+        return e.getErrors();
     }
 }
