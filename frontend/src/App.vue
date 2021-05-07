@@ -1,9 +1,6 @@
 <template>
-  <div id="app" class="mx-auto mb-24 lg:px-36 px-4 container">
-    <nav class="pt-12 pb-8">
-      <router-link :to="{ name: 'ContactListView' }">Contacts</router-link>
-    </nav>
-    <main>
+  <div id="app">
+    <main class="mt-12 mx-auto mb-24 lg:px-36 px-4 container">
       <router-view />
     </main>
   </div>

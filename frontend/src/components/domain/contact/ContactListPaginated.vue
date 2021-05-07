@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col align-middle">
     <div class="space-y-2 mb-5">
       <ContactItem
         v-for="contact in contacts"
@@ -12,6 +12,7 @@
       @page-changed="loadPage($event)"
       :page="page"
       :totalPages="totalPages"
+      class="mx-auto"
     />
   </div>
 </template>
@@ -61,13 +62,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-tr {
-  @apply border-2;
-}
-
-td {
-  @apply px-4 py-1;
-}
-</style>
