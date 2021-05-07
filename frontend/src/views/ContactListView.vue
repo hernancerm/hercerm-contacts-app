@@ -3,18 +3,18 @@
     <router-link :to="{ name: 'ContactCreateOrUpdateView' }"
       >Add new contact</router-link
     >
-    <ContactsTablePaginated />
+    <ContactListPaginated />
   </div>
 </template>
 
 <script>
-import ContactsTablePaginated from "@/components/domain/contact/ContactsTablePaginated.vue";
+import ContactListPaginated from "@/components/domain/contact/ContactListPaginated.vue";
 
 export default {
   name: "Home",
 
   components: {
-    ContactsTablePaginated
+    ContactListPaginated
   }
 };
 </script>
