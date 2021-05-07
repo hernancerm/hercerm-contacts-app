@@ -80,7 +80,7 @@ export default {
 
     updateContact(contactId) {
       this.$router.push({
-        name: "ContactCreateView",
+        name: "ContactCreateOrUpdateView",
         params: { contactId }
       });
     }
