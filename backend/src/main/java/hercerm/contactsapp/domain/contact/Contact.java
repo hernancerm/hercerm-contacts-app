@@ -14,10 +14,10 @@ public class Contact {
 
     // "\\p{L}" identifies all Unicode characters belonging to the 'letter' category.
     // http://www.regular-expressions.info/unicode.html#prop
-    public static final String NAMES_PATTERN = "[\\p{L}\\s]+";
-    public static final String EMAIL_PATTERN = "[\\w\\d.]+@[\\w\\d]+[.][a-z]+";
-    public static final String COMPANY_PATTERN = "[\\p{L}0-9\\s'._#&-]+";
-    public static final String PHONE_PATTERN = "[0-9]+";
+    public static final String NAMES_PATTERN = "^\\p{L}[\\p{L}\\s]*\\p{L}$";
+    public static final String EMAIL_PATTERN = "^[\\w\\d.]+@[\\w\\d]+[.][a-z]+$";
+    public static final String COMPANY_PATTERN = "^\\S[\\S\\s]*\\S$";
+    public static final String PHONE_PATTERN = "^[0-9]+$";
 
     @Id
     @GeneratedValue
