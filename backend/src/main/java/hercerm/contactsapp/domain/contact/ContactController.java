@@ -23,8 +23,11 @@ public class ContactController {
 
     @GetMapping
     public Page<ContactDto.Response.Public> getContactsPaginated(
-            @PageableDefault(size = 10) Pageable pageable) {
-        return contactService.getContactsPaginated(pageable);
+            @PageableDefault(size = 10) Pageable pageable,
+            // By default request params are required. When optional, if not
+            // provided their value is set to null.
+            @RequestParam(name = "query", required = false) String searchTerm) {
+        return contactService.getContactsPaginated(pageable, searchTerm);
     }
 
     @GetMapping("/{contactId}")
