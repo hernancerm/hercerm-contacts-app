@@ -86,6 +86,7 @@ export default {
 
   methods: {
     onSubmit() {
+      this.superficialTrimWhitespace(this.contact);
       const contact = this.removeEmptyProperties(this.contact);
       if (this.operation === "CREATE") {
         axios
@@ -116,6 +117,14 @@ export default {
         }
       }
       return output;
+    },
+
+    superficialTrimWhitespace(object) {
+      for (const property in object) {
+        if (typeof object[property] === "string") {
+          object[property] = object[property].trim();
+        }
+      }
     }
   },
 
