@@ -65,19 +65,19 @@ public class ContactService {
 
         if (missingValue(contactDto.getFirstName())) {
             errors.put("firstName", "First name is required");
-        } else if (!contactDto.getFirstName().matches("[a-zA-Z\\s]+")) {
+        } else if (!contactDto.getFirstName().matches(Contact.NAMES_PATTERN)) {
             errors.put("firstName", "Should only contain words, not numbers");
         }
 
         if (missingValue(contactDto.getLastName())) {
             errors.put("lastName", "Last name is required");
-        } else if (!contactDto.getLastName().matches("[a-zA-Z\\s]+")) {
+        } else if (!contactDto.getLastName().matches(Contact.NAMES_PATTERN)) {
             errors.put("lastName", "Should only contain words, not numbers");
         }
 
         if (missingValue(contactDto.getEmail())) {
             errors.put("email", "Email is required");
-        } else if (!contactDto.getEmail().matches("[\\w\\d]+@[\\w\\d]+[.]\\w+")) {
+        } else if (!contactDto.getEmail().matches(Contact.EMAIL_PATTERN)) {
             errors.put("email", "Invalid email format");
         } else {
             contactRepository.findContactByEmail(contactDto.getEmail()).ifPresent(contact -> {
@@ -93,13 +93,13 @@ public class ContactService {
         }
 
         if (!missingValue(contactDto.getCompany())) {
-            if (!contactDto.getCompany().matches("[a-zA-Z0-9\\s_.-]+")) {
+            if (!contactDto.getCompany().matches(Contact.COMPANY_PATTERN)) {
                 errors.put("company", "Should only contain words, not numbers");
             }
         }
 
         if (!missingValue(contactDto.getPhoneNumber())) {
-            if (!contactDto.getPhoneNumber().matches("[0-9]+")) {
+            if (!contactDto.getPhoneNumber().matches(Contact.PHONE_PATTERN)) {
                 errors.put("phoneNumber", "Should only contain numbers");
             } else {
                 contactRepository.findContactByPhoneNumber(contactDto.getPhoneNumber()).ifPresent(contact -> {

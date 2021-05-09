@@ -13,7 +13,7 @@ public enum ContactDto {;
 
     public enum Request {;
         @Data
-        public static class Base implements FirstName, LastName, ContactDto.Email, Company, PhoneNumber {
+        public static class Base implements FirstName, LastName, Email, Company, PhoneNumber {
             public String firstName;
             public String lastName;
             public String email;
@@ -24,7 +24,7 @@ public enum ContactDto {;
 
     public enum Response {;
         @Data
-        public static class Public implements ContactId, FirstName, LastName, ContactDto.Email,
+        public static class Public implements ContactId, FirstName, LastName, Email,
                 Company, PhoneNumber {
             public long contactId;
             public String firstName;

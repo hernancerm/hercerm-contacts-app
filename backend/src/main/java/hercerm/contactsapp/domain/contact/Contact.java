@@ -12,12 +12,19 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 public class Contact {
 
+    // "\\p{L}" identifies all Unicode characters belonging to the 'letter' category.
+    // http://www.regular-expressions.info/unicode.html#prop
+    public static final String NAMES_PATTERN = "[\\p{L}\\s]+";
+    public static final String EMAIL_PATTERN = "[\\w\\d.]+@[\\w\\d]+[.][a-z]+";
+    public static final String COMPANY_PATTERN = "[\\p{L}0-9\\s'._#&-]+";
+    public static final String PHONE_PATTERN = "[0-9]+";
+
     @Id
     @GeneratedValue
     private long contactId;
 
     @NotBlank(message = "First name is required")
-    @Pattern(regexp = "[a-zA-Z\\s]+", message = "Should only contain words, not numbers")
+    @Pattern(regexp = Contact.NAMES_PATTERN, message = "Should only contain words, not numbers")
     private String firstName;
     @NotBlank(message = "Last name is required")
     @Pattern(regexp = "[a-zA-Z\\s]+", message = "Should only contain words, not numbers")
@@ -25,13 +32,13 @@ public class Contact {
 
     @Column(unique = true)
     @NotBlank(message = "Email is required")
-    @javax.validation.constraints.Email(message = "Invalid email format")
+    @Pattern(regexp = Contact.EMAIL_PATTERN, message = "Invalid email format")
     private String email;
 
-    @Pattern(regexp = "[a-zA-Z0-9\\s_.-]+", message = "Should only contain letters or numbers")
+    @Pattern(regexp = Contact.COMPANY_PATTERN, message = "Should only contain letters or numbers")
     private String company;
     @Column(unique = true)
-    @Pattern(regexp = "[0-9]+", message = "Should only contain numbers")
+    @Pattern(regexp = Contact.PHONE_PATTERN, message = "Should only contain numbers")
     private String phoneNumber;
 
     public Contact(String firstName, String lastName, String email) {
