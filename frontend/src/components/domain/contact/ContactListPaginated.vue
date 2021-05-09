@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import PageSelector from "@/components/ui/PageSelector.vue";
 import ContactItem from "./ContactItem.vue";
+import { ContactService } from "@/services/ContactService.js";
 
 export default {
   name: "ContactsTablePaginated",
@@ -39,20 +39,29 @@ export default {
   },
 
   methods: {
-    loadPage(pageNumber) {
-      axios.get(`/api/contacts?page=${pageNumber}`).then(result => {
-        this.contacts = result.data.content;
-        this.totalPages = result.data.totalPages;
+    async loadPage(pageNumber) {
+      // "The destructuring assignment syntax is a JavaScript expression that
+      // makes it possible to unpack values from arrays, or properties from
+      // objects, into distinct variables."
+      //
+      // Object desctructuring:
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring
+      const { data } = await ContactService().getContactsPaginated({
+        page: pageNumber
       });
+
+      this.contacts = data.content;
+      this.totalPages = data.totalPages;
       this.page = pageNumber;
     },
+
     reloadContacts() {
       this.loadPage(this.page);
     }
   },
 
   beforeMount() {
-    this.loadPage(this.page);
+    this.reloadContacts();
   },
 
   filters: {

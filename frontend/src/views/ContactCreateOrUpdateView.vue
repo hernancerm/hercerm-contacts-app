@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import InputText from "../components/ui/InputText.vue";
+import { ContactService } from "@/services/ContactService.js";
 
 export default {
   name: "ContactCreateView",
@@ -71,8 +71,6 @@ export default {
 
   data: function() {
     return {
-      operation: "CREATE",
-      contactId: null,
       contact: {
         firstName: "",
         lastName: "",
@@ -85,37 +83,34 @@ export default {
   },
 
   methods: {
-    onSubmit() {
+    async onSubmit() {
       this.superficialTrimWhitespace(this.contact);
       const contact = this.preprocessContact(this.contact);
-      if (this.operation === "CREATE") {
-        axios
-          .post("/api/contacts", contact)
-          .then(() => {
-            this.$router.push({ name: "ContactListView" });
-          })
-          .catch(error => {
-            this.serverErrors = error.response.data;
-          });
-      } else if (this.operation === "UPDATE") {
-        axios
-          .put(`/api/contacts/${this.contactId}`, contact)
-          .then(() => {
-            this.$router.push({ name: "ContactListView" });
-          })
-          .catch(error => {
-            this.serverErrors = error.response.data;
-          });
+
+      if (this.contact.contactId) {
+        try {
+          await ContactService().updateContact(contact, this.contact.contactId);
+          this.$router.push({ name: "ContactListView" });
+        } catch (e) {
+          this.serverErrors = e.response.data;
+        }
+      } else {
+        try {
+          await ContactService().createContact(contact);
+          this.$router.push({ name: "ContactListView" });
+        } catch (e) {
+          this.serverErrors = e.response.data;
+        }
       }
     },
 
     preprocessContact(contact) {
       contact = this.copyNonEmptyProperties(this.contact);
-      return {
-        ...contact,
+      if (contact.phoneNumber) {
         // Allow users to separate phone numbers with white space.
-        phoneNumber: contact.phoneNumber.replaceAll(/\s/g, "")
-      };
+        contact.phoneNumber = contact.phoneNumber.replaceAll(/\s/g, "");
+      }
+      return contact;
     },
 
     copyNonEmptyProperties(object) {
@@ -137,20 +132,15 @@ export default {
     }
   },
 
-  mounted() {
+  // Vue component lifecycle:
+  // https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram
+  async beforeMount() {
     const pathContactId = this.$route.params.contactId;
     if (pathContactId) {
-      axios.get(`/api/contacts/${pathContactId}`).then(result => {
-        this.contact = {
-          firstName: result.data.firstName,
-          lastName: result.data.lastName,
-          email: result.data.email,
-          company: result.data.company,
-          phoneNumber: result.data.phoneNumber
-        };
-        this.contactId = result.data.contactId;
-        this.operation = "UPDATE";
-      });
+      const { data: contact } = await ContactService().findContactById(
+        pathContactId
+      );
+      this.contact = contact;
     }
   }
 };
