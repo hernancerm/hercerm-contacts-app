@@ -1,4 +1,4 @@
-package hercerm.btcontacts.domain.contact;
+package hercerm.contactsapp.domain.contact;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

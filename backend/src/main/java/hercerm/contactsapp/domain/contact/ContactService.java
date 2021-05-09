@@ -1,7 +1,7 @@
-package hercerm.btcontacts.domain.contact;
+package hercerm.contactsapp.domain.contact;
 
-import hercerm.btcontacts.errors.ContactNotFoundException;
-import hercerm.btcontacts.errors.InvalidContactException;
+import hercerm.contactsapp.errors.ContactNotFoundException;
+import hercerm.contactsapp.errors.InvalidContactException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
