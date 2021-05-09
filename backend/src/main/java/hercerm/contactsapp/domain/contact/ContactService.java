@@ -36,7 +36,7 @@ public class ContactService {
         var requestCreateMapper = ContactMapper.Request.CreateMapper.INSTANCE;
         var responsePublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
 
-        Contact savedContact = contactRepository.save(requestCreateMapper.createToContact(contactDto));
+        Contact savedContact = contactRepository.saveAndFlush(requestCreateMapper.createToContact(contactDto));
         return responsePublicMapper.contactToPublic(savedContact);
     }
 
@@ -52,7 +52,7 @@ public class ContactService {
         Contact contact = requestCreateMapper.createToContact(contactDto);
         contact.setContactId(contactId);
 
-        Contact updatedContact = contactRepository.save(contact);
+        Contact updatedContact = contactRepository.saveAndFlush(contact);
         return responsePublicMapper.contactToPublic(updatedContact);
     }
 
