@@ -86,7 +86,8 @@ export default {
 
   methods: {
     onSubmit() {
-      const contact = this.removeEmptyProperties(this.contact);
+      this.superficialTrimWhitespace(this.contact);
+      const contact = this.preprocessContact(this.contact);
       if (this.operation === "CREATE") {
         axios
           .post("/api/contacts", contact)
@@ -108,7 +109,16 @@ export default {
       }
     },
 
-    removeEmptyProperties(object) {
+    preprocessContact(contact) {
+      contact = this.copyNonEmptyProperties(this.contact);
+      return {
+        ...contact,
+        // Allow users to separate phone numbers with white space.
+        phoneNumber: contact.phoneNumber.replaceAll(/\s/g, "")
+      };
+    },
+
+    copyNonEmptyProperties(object) {
       const output = {};
       for (const property in object) {
         if (object[property] !== null && object[property] !== "") {
@@ -116,6 +126,14 @@ export default {
         }
       }
       return output;
+    },
+
+    superficialTrimWhitespace(object) {
+      for (const property in object) {
+        if (typeof object[property] === "string") {
+          object[property] = object[property].trim();
+        }
+      }
     }
   },
 

@@ -1,7 +1,7 @@
-package hercerm.btcontacts.bootstrapper;
+package hercerm.contactsapp.bootstrapper;
 
-import hercerm.btcontacts.domain.contact.Contact;
-import hercerm.btcontacts.domain.contact.ContactRepository;
+import hercerm.contactsapp.domain.contact.Contact;
+import hercerm.contactsapp.domain.contact.ContactRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

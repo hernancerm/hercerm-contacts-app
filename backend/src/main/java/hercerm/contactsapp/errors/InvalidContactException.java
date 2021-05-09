@@ -1,4 +1,4 @@
-package hercerm.btcontacts.errors;
+package hercerm.contactsapp.errors;
 
 import java.util.Map;
 

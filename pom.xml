@@ -10,10 +10,11 @@
 	</parent>
 
 	<groupId>hercerm</groupId>
-	<artifactId>bt-contacts</artifactId>
+	<artifactId>hercerm-contacts-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bt-contacts</name>
-	<description>Breakable toy contacts app</description>
+
+	<name>hercerm-contacts-app</name>
+	<description>Contacts app</description>
 
 	<packaging>pom</packaging>
 

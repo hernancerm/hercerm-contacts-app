@@ -1,4 +1,4 @@
-package hercerm.btcontacts.configuration;
+package hercerm.contactsapp.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
