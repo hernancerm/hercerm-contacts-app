@@ -1,5 +1,6 @@
 package hercerm.contactsapp.domain.contact;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 public enum ContactDto {;
@@ -13,6 +14,7 @@ public enum ContactDto {;
 
     public enum Request {;
         @Data
+        @JsonIgnoreProperties({"contactId"})
         public static class Base implements FirstName, LastName, Email, Company, PhoneNumber {
             public String firstName;
             public String lastName;
