@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'AboutView' }">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="text-gray-300 hover:text-gray-400 h-7 w-7 absolute -right-8 top-2"
+          class="text-gray-300 hover:text-gray-400 h-7 w-7 absolute -right-9 top-2"
           viewBox="0 0 20 20"
           fill="currentColor"
         >

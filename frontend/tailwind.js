@@ -4,7 +4,12 @@ module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {}
+    minHeight: {
+      "28": "7rem",
+      "32": "8rem",
+      "36": "9rem",
+      "40": "10rem"
+    }
   },
   variants: {
     extend: {
