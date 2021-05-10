@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <main class="mt-12 mx-auto mb-24 lg:px-36 px-4 container">
+    <main class="mt-12 mx-auto mb-20 lg:px-36 px-4 container">
       <router-view />
     </main>
   </div>
@@ -12,16 +12,5 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
-
-nav {
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
