@@ -6,6 +6,16 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "App",
+
+  metaInfo: {
+    title: "Contacts app"
+  }
+};
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
