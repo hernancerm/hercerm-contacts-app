@@ -1,7 +1,10 @@
 <template>
-  <div class="flex flex-col align-middle">
-    <SearchBar v-model="searchTerm" />
-    <div class="space-y-2 mb-5">
+  <div class="flex flex-col align-middle space-y-5">
+    <SearchBar
+      v-model="searchTerm"
+      placeholder="Search by first name or last name"
+    />
+    <div class="space-y-2">
       <ContactItem
         v-for="contact in contacts"
         :key="contact.contactId"
