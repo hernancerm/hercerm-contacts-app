@@ -25,13 +25,13 @@
         application using Java, Spring, Vue.js, TailwindCSS and PostgreSQL.
       </p>
       <p>
-        You can find the code in
+        You can find the source code in my
         <a
           class="underline text-blue-400 hover:text-blue-500"
           target="_blank"
           href="https://github.com/HerCerM/hercerm-contacts-app"
-          >my GitHub repository.</a
-        >
+          >GitHub repository</a
+        >.
       </p>
     </div>
   </div>
