@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>Your contacts 👩</h1>
-    <div class="pb-4">
+    <div class="pb-5">
       <router-link
-        class="flex space-x-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-sm"
+        class="flex space-x-1 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-sm"
         :to="{ name: 'ContactCreateOrUpdateView' }"
       >
         <svg

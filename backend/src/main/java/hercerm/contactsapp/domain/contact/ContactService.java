@@ -18,10 +18,15 @@ public class ContactService {
         this.contactRepository = contactRepository;
     }
 
-    public Page<ContactDto.Response.Public> getContactsPaginated(Pageable pageable) {
+    public Page<ContactDto.Response.Public> getContactsPaginated(Pageable pageable, String searchTerm) {
         var requestPublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
 
-        return contactRepository.findAll(pageable).map(requestPublicMapper::contactToPublic);
+        if (searchTerm == null)
+            return contactRepository.findAll(pageable)
+                    .map(requestPublicMapper::contactToPublic);
+        else
+            return contactRepository.findPaginatedBySearchTerm(searchTerm, pageable)
+                    .map(requestPublicMapper::contactToPublic);
     }
 
     public ContactDto.Response.Public findById(long contactId) {

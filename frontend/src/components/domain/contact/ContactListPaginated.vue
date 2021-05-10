@@ -1,6 +1,10 @@
 <template>
-  <div class="flex flex-col align-middle">
-    <div class="space-y-2 mb-5">
+  <div class="flex flex-col align-middle space-y-5">
+    <SearchBar
+      v-model="searchTerm"
+      placeholder="Search by first name or last name"
+    />
+    <div class="space-y-2">
       <ContactItem
         v-for="contact in contacts"
         :key="contact.contactId"
@@ -20,21 +24,24 @@
 <script>
 import PageSelector from "@/components/ui/PageSelector.vue";
 import ContactItem from "./ContactItem.vue";
+import SearchBar from "@/components/ui/SearchBar.vue";
 import { ContactService } from "@/services/ContactService.js";
 
 export default {
   name: "ContactsTablePaginated",
 
   components: {
-    PageSelector,
-    ContactItem
+    SearchBar,
+    ContactItem,
+    PageSelector
   },
 
   data() {
     return {
       contacts: [],
       page: 0,
-      totalPages: 0
+      totalPages: 0,
+      searchTerm: ""
     };
   },
 
@@ -47,7 +54,8 @@ export default {
       // Object desctructuring:
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring
       const { data } = await ContactService().getContactsPaginated({
-        page: pageNumber
+        page: pageNumber,
+        query: this.searchTerm
       });
 
       this.contacts = data.content;
@@ -64,9 +72,9 @@ export default {
     this.reloadContacts();
   },
 
-  filters: {
-    emptyFill(value) {
-      return value === null ? "-" : value;
+  watch: {
+    searchTerm: function() {
+      this.loadPage(0);
     }
   }
 };

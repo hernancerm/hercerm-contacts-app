@@ -7,8 +7,8 @@ import axios from "axios";
 // https://medium.com/javascript-scene/javascript-factory-functions-with-es6-4d224591a8b1
 
 export const ContactService = () => {
-  const getContactsPaginated = ({ page, size }) => {
-    return axios.get(`/api/contacts?page=${page}&size=${size}`);
+  const getContactsPaginated = ({ page, size, query }) => {
+    return axios.get(`/api/contacts?page=${page}&size=${size}&query=${query}`);
   };
 
   const createContact = contact => {
