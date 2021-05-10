@@ -1,32 +1,36 @@
 <template>
   <div
-    class="h-30 sm:h-20 flex justify-between p-4 border border-gray-400 rounded-md"
+    class="h-36 sm:h-20 flex justify-between p-4 border border-gray-400 rounded-md"
   >
     <div class="space-y-1">
       <!-- sm applies for sm breakpoint and higher (md, lg, etc.) -->
-      <div class="flex flex-col sm:flex-row sm:space-x-4">
+      <div
+        class="space-y-1 sm:space-y-0 flex flex-col sm:flex-row sm:space-x-4"
+      >
         <div class="font-semibold">
           {{ contact.firstName + " " + contact.lastName }}
         </div>
         <div>{{ contact.email }}</div>
       </div>
-      <div class="flex space-x-4">
+      <div
+        class="space-y-1 sm:space-y-0 flex flex-col sm:flex-row sm:space-x-4"
+      >
         <div>{{ contact.company }}</div>
         <div>{{ contact.phoneNumber }}</div>
       </div>
     </div>
     <div
-      class="flex flex-col space-y-2 align-middle sm:flex-row sm:space-x-6 sm:space-y-0"
+      class="flex flex-col space-y-4 align-middle sm:flex-row sm:space-x-6 sm:space-y-0"
     >
       <button
         @click="updateContact(contact.contactId)"
-        class="p-2 sm:p-0 px-4 w-20 bg-blue-100 hover:bg-blue-200 rounded-sm"
+        class="p-2 sm:p-0 px-4 w-20 bg-blue-100 hover:bg-blue-200 rounded-sm h-full"
       >
         Edit
       </button>
       <button
         @click="deleteContact(contact.contactId)"
-        class="p-2 sm:p-0 px-4 w-20 bg-red-100 hover:bg-red-200 rounded-sm"
+        class="p-2 sm:p-0 px-4 w-20 bg-red-100 hover:bg-red-200 rounded-sm h-full"
       >
         Delete
       </button>
