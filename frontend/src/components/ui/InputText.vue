@@ -6,7 +6,7 @@
       :value="value"
       @input="$emit('input', $event.target.value)"
       :id="relate"
-      class="w-full duration-200 outline-none border border-gray-500 p-1 rounded-sm focus:ring-2 focus:ring-blue-300"
+      class="w-full duration-200 outline-none border border-gray-500 p-2 rounded-sm focus:ring-2 focus:ring-blue-300"
     />
     <span class="absolute -bottom-6 text-red-600">{{ serverError }}</span>
   </div>
