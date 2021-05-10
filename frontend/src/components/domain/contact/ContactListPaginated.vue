@@ -46,21 +46,23 @@ export default {
   },
 
   methods: {
-    async loadPage(pageNumber) {
+    loadPage(pageNumber) {
       // "The destructuring assignment syntax is a JavaScript expression that
       // makes it possible to unpack values from arrays, or properties from
       // objects, into distinct variables."
       //
       // Object desctructuring:
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring
-      const { data } = await ContactService().getContactsPaginated({
-        page: pageNumber,
-        query: this.searchTerm
-      });
+      setTimeout(async () => {
+        const { data } = await ContactService().getContactsPaginated({
+          page: pageNumber,
+          query: this.searchTerm
+        });
 
-      this.contacts = data.content;
-      this.totalPages = data.totalPages;
-      this.page = pageNumber;
+        this.contacts = data.content;
+        this.totalPages = data.totalPages;
+        this.page = pageNumber;
+      }, 500);
     },
 
     reloadContacts() {
