@@ -22,7 +22,7 @@ public class ContactService {
         var requestPublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
 
         if (searchTerm == null)
-            return contactRepository.findAll(pageable)
+            return contactRepository.findAllOrdered(pageable)
                     .map(requestPublicMapper::contactToPublic);
         else
             return contactRepository.findPaginatedBySearchTerm(searchTerm, pageable)

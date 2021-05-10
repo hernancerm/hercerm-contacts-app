@@ -11,6 +11,10 @@ import java.util.Optional;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
+
+    @Query("SELECT c FROM Contact c ORDER BY c.firstName, c.lastName")
+    Page<Contact> findAllOrdered(Pageable pageable);
+
     Optional<Contact> findContactByEmail(String email);
     Optional<Contact> findContactByPhoneNumber(String phoneNumber);
 
@@ -18,6 +22,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
     // https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
     @Query("SELECT c FROM Contact c WHERE " +
             "LOWER(c.firstName) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR " +
-            "LOWER(c.lastName) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
+            "LOWER(c.lastName) LIKE LOWER(CONCAT('%', :searchTerm, '%')) " +
+            "ORDER BY c.firstName, c.lastName")
     Page<Contact> findPaginatedBySearchTerm(@Param("searchTerm") String searchTerm, Pageable pageable);
 }
