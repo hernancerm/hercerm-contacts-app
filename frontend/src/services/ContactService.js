@@ -16,7 +16,7 @@ export const ContactService = () => {
   };
 
   const updateContact = (contact, contactId) => {
-    axios.put(`/api/contacts/${contactId}`, contact);
+    return axios.put(`/api/contacts/${contactId}`, contact);
   };
 
   const findContactById = contactId => {
