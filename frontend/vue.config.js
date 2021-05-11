@@ -4,6 +4,7 @@ module.exports = {
   // http-proxy-middleware see:
   // https://cli.vuejs.org/config/#devserver-proxy
   devServer: {
+    port: 8081,
     proxy: {
       "^/api": {
         // this configuration needs to correspond to the Spring Boot backends'

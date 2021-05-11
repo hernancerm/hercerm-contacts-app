@@ -16,7 +16,7 @@ mvn clean package
 mvn -pl backend spring-boot:run
 ```
 
-If you don't have Maven installed you can use the wrapper for you OS. For example, if you are in MacOS you can use:
+If you don't have Maven installed you can use the wrapper for you OS. For example, if you are in macOS you can use:
 
 ```
 ./mvnw clean package
