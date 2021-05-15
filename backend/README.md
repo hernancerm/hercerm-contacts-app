@@ -20,10 +20,7 @@
     - [Request parameters](#request-parameters-3)
     - [Response](#response-4)
 - [Entities](#entities)
-  - [Requests to server](#requests-to-server)
-    - [ContactBase](#contactbase)
-  - [Responses by server](#responses-by-server)
-    - [ContactPublic](#contactpublic)
+  - [Contact](#contact)
 
 <!-- /TOC -->
 
@@ -50,7 +47,7 @@ Get a paginated list of contacts, with pagination information.
 
 ```text
 {
-  "content": [ContactPublic]
+  "content": [Contact]
   "totalPages": number
   "totalElements": number
 }
@@ -61,7 +58,7 @@ Notice that the pagination data covers more than these two properties, but these
 <a id="markdown-get-apicontactscontactid" name="get-apicontactscontactid"></a>
 ### GET /api/contacts/{contactId}
 
-Find a contact by his or her id.
+Find a contact by id.
 
 <a id="markdown-request-parameters-1" name="request-parameters-1"></a>
 #### Request parameters
@@ -76,7 +73,7 @@ Find a contact by his or her id.
 **200 OK**
 
 ```text
-ContactPublic
+Contact
 ```
 
 <a id="markdown-post-apicontact" name="post-apicontact"></a>
@@ -88,7 +85,7 @@ Create a contact.
 #### Request body
 
 ```text
-ContactBase
+Contact
 ```
 
 <a id="markdown-response-2" name="response-2"></a>
@@ -97,7 +94,7 @@ ContactBase
 **201 Created**
 
 ```text
-ContactPublic
+Contact
 ```
 
 <a id="markdown-put-apicontactscontactid" name="put-apicontactscontactid"></a>
@@ -115,8 +112,10 @@ Update an existing contact.
 <a id="markdown-request-body-1" name="request-body-1"></a>
 #### Request body
 
+Not required to provide the `contactId` property in the body.
+
 ```text
-ContactBase
+Contact
 ```
 
 <a id="markdown-response-3" name="response-3"></a>
@@ -125,7 +124,7 @@ ContactBase
 **200 OK**
 
 ```text
-ContactPublic
+Contact
 ```
 
 <a id="markdown-delete-apicontactcontactid" name="delete-apicontactcontactid"></a>
@@ -146,49 +145,17 @@ ContactPublic
 <a id="markdown-entities" name="entities"></a>
 ## Entities
 
-<a id="markdown-requests-to-server" name="requests-to-server"></a>
-### Requests to server
+<a id="markdown-contact" name="contact"></a>
+### Contact
 
-<a id="markdown-contactbase" name="contactbase"></a>
-#### ContactBase
-
-Structure:
-
-|Property|Observation|
+|Property|Description|
 |---|---|
+|`contactId`|Not required on update or create.|
 |`firstName`|**Mandatory**, only alphabetic chars and white space.|
 |`lastName`|**Mandatory**, only alphabetic chars and white space.|
 |`email`|**Mandatory**, unique among contacts.|
 |`company`|Optional, alphanumeric.|
 |`phoneNumber`|Optional, only numbers, unique among contacts.|
-
-```text
-{
-  "firstName": string,
-  "lastName": string,
-  "email": string,
-  "company": string,
-  "phoneNumber": string
-}
-```
-
-Example:
-
-```json
-{
-  "firstName": "Camila",
-  "lastName": "Hughes",
-  "email": "camila@example.com",
-  "company": "Camila Co.",
-  "phoneNumber": "9994535145"
-}
-```
-
-<a id="markdown-responses-by-server" name="responses-by-server"></a>
-### Responses by server
-
-<a id="markdown-contactpublic" name="contactpublic"></a>
-#### ContactPublic
 
 Structure:
 

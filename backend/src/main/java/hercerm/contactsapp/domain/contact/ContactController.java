@@ -22,7 +22,7 @@ public class ContactController {
     }
 
     @GetMapping
-    public Page<ContactDto.Response.Public> getContactsPaginated(
+    public Page<Contact> getContactsPaginated(
             @PageableDefault(size = 10) Pageable pageable,
             // By default request params are required. When optional, if not
             // provided their value is set to null.
@@ -31,20 +31,20 @@ public class ContactController {
     }
 
     @GetMapping("/{contactId}")
-    public ContactDto.Response.Public findContactById(@PathVariable long contactId) {
+    public Contact findContactById(@PathVariable long contactId) {
         return contactService.findById(contactId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactDto.Response.Public createContact(@RequestBody ContactDto.Request.Base contactDto) {
-        return contactService.createContact(contactDto);
+    public Contact createContact(@RequestBody Contact contact) {
+        return contactService.createContact(contact);
     }
 
     @PutMapping("/{contactId}")
-    public ContactDto.Response.Public updateContact(
-            @RequestBody ContactDto.Request.Base contactDto, @PathVariable long contactId) {
-        return contactService.updateContact(contactDto, contactId);
+    public Contact updateContact(
+            @RequestBody Contact contact, @PathVariable long contactId) {
+        return contactService.updateContact(contact, contactId);
     }
 
     @DeleteMapping("/{contactId}")
