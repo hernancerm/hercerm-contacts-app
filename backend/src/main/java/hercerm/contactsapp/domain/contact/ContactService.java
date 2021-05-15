@@ -18,77 +18,61 @@ public class ContactService {
         this.contactRepository = contactRepository;
     }
 
-    public Page<ContactDto.Response.Public> getContactsPaginated(Pageable pageable, String searchTerm) {
-        var requestPublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
-
+    public Page<Contact> getContactsPaginated(Pageable pageable, String searchTerm) {
         if (searchTerm == null)
-            return contactRepository.findAllOrdered(pageable)
-                    .map(requestPublicMapper::contactToPublic);
+            return contactRepository.findAllOrdered(pageable);
         else
-            return contactRepository.findPaginatedBySearchTerm(searchTerm, pageable)
-                    .map(requestPublicMapper::contactToPublic);
+            return contactRepository.findPaginatedBySearchTerm(searchTerm, pageable);
     }
 
-    public ContactDto.Response.Public findById(long contactId) {
-        var responsePublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
-        Contact contact = contactRepository.findById(contactId).orElseThrow(ContactNotFoundException::new);
-        return responsePublicMapper.contactToPublic(contact);
+    public Contact findById(long contactId) {
+        return contactRepository.findById(contactId).orElseThrow(ContactNotFoundException::new);
     }
 
-    public ContactDto.Response.Public createContact(ContactDto.Request.Base contactDto) {
-        validateContact(contactDto, new HashMap<>());
-
-        var requestCreateMapper = ContactMapper.Request.CreateMapper.INSTANCE;
-        var responsePublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
-
-        Contact savedContact = contactRepository.saveAndFlush(requestCreateMapper.createToContact(contactDto));
-        return responsePublicMapper.contactToPublic(savedContact);
+    public Contact createContact(Contact contact) {
+        validateContact(contact, new HashMap<>());
+        return contactRepository.saveAndFlush(contact);
     }
 
-    public ContactDto.Response.Public updateContact(ContactDto.Request.Base contactDto, long contactId) {
+    public Contact updateContact(Contact contact, long contactId) {
         Map<String, String> metadata = new HashMap<>();
         metadata.put("CONTACT_ID", Long.toString(contactId));
-        validateContact(contactDto, metadata);
-
-        var responsePublicMapper = ContactMapper.Response.PublicMapper.INSTANCE;
-        var requestCreateMapper = ContactMapper.Request.CreateMapper.INSTANCE;
+        validateContact(contact, metadata);
 
         contactRepository.findById(contactId).orElseThrow(ContactNotFoundException::new);
-        Contact contact = requestCreateMapper.createToContact(contactDto);
         contact.setContactId(contactId);
 
-        Contact updatedContact = contactRepository.saveAndFlush(contact);
-        return responsePublicMapper.contactToPublic(updatedContact);
+        return contactRepository.saveAndFlush(contact);
     }
 
     public void deleteContact(long contactId) {
         contactRepository.findById(contactId).ifPresent(contactRepository::delete);
     }
 
-    private void validateContact(ContactDto.Request.Base contactDto, Map<String, String> metadata) {
+    private void validateContact(Contact contact, Map<String, String> metadata) {
         Map<String, String> errors = new HashMap<>();
 
-        if (missingValue(contactDto.getFirstName())) {
+        if (missingValue(contact.getFirstName())) {
             errors.put("firstName", "First name is required");
-        } else if (!contactDto.getFirstName().matches(Contact.NAMES_PATTERN)) {
+        } else if (!contact.getFirstName().matches(Contact.NAMES_PATTERN)) {
             errors.put("firstName", "Should only contain words, not numbers");
         }
 
-        if (missingValue(contactDto.getLastName())) {
+        if (missingValue(contact.getLastName())) {
             errors.put("lastName", "Last name is required");
-        } else if (!contactDto.getLastName().matches(Contact.NAMES_PATTERN)) {
+        } else if (!contact.getLastName().matches(Contact.NAMES_PATTERN)) {
             errors.put("lastName", "Should only contain words, not numbers");
         }
 
-        if (missingValue(contactDto.getEmail())) {
+        if (missingValue(contact.getEmail())) {
             errors.put("email", "Email is required");
-        } else if (!contactDto.getEmail().matches(Contact.EMAIL_PATTERN)) {
+        } else if (!contact.getEmail().matches(Contact.EMAIL_PATTERN)) {
             errors.put("email", "Invalid email format");
         } else {
-            contactRepository.findContactByEmail(contactDto.getEmail()).ifPresent(contact -> {
+            contactRepository.findContactByEmail(contact.getEmail()).ifPresent(foundContact -> {
                 if (metadata.containsKey("CONTACT_ID")) {
                     long contactId = Long.parseLong(metadata.get("CONTACT_ID"));
-                    if (contactId != contact.getContactId()) {
+                    if (contactId != foundContact.getContactId()) {
                         errors.put("email", "Another contact has the same email");
                     }
                 } else {
@@ -97,20 +81,20 @@ public class ContactService {
             });
         }
 
-        if (!missingValue(contactDto.getCompany())) {
-            if (!contactDto.getCompany().matches(Contact.COMPANY_PATTERN)) {
+        if (!missingValue(contact.getCompany())) {
+            if (!contact.getCompany().matches(Contact.COMPANY_PATTERN)) {
                 errors.put("company", "Should only contain words, not numbers");
             }
         }
 
-        if (!missingValue(contactDto.getPhoneNumber())) {
-            if (!contactDto.getPhoneNumber().matches(Contact.PHONE_PATTERN)) {
+        if (!missingValue(contact.getPhoneNumber())) {
+            if (!contact.getPhoneNumber().matches(Contact.PHONE_PATTERN)) {
                 errors.put("phoneNumber", "Should only contain numbers");
             } else {
-                contactRepository.findContactByPhoneNumber(contactDto.getPhoneNumber()).ifPresent(contact -> {
+                contactRepository.findContactByPhoneNumber(contact.getPhoneNumber()).ifPresent(foundContact -> {
                     if (metadata.containsKey("CONTACT_ID")) {
                         long contactId = Long.parseLong(metadata.get("CONTACT_ID"));
-                        if (contactId != contact.getContactId()) {
+                        if (contactId != foundContact.getContactId()) {
                             errors.put("phoneNumber", "Another contact has the same phone number");
                         }
                     } else {
