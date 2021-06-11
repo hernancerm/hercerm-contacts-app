@@ -1,6 +1,9 @@
 package hercerm.contactsapp.domain.contact;
 
 import hercerm.contactsapp.errors.InvalidContactException;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -9,8 +12,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+// https://www.baeldung.com/spring-rest-openapi-documentation
+// TODO:
+//   -  Add description per endpoint.
+//   - Change name of controller in Swagger UI to "Contacts".
+//   - Change path /v3/api-docs to "/openapi.js".
+
 @RestController
 @RequestMapping(ContactController.BASE_URL)
+// Add content to the generated API docs:
+// https://springdoc.org/#adding-api-information-and-security-documentation
+@OpenAPIDefinition(info = @Info(title = "Contacts"))
 public class ContactController {
 
     public static final String BASE_URL = "/api/contacts";
@@ -21,6 +33,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
+    @Operation(summary = "get contacts paginated")
     @GetMapping
     public Page<Contact> getContactsPaginated(
             @PageableDefault(size = 10) Pageable pageable,
