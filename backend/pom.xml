@@ -66,6 +66,11 @@
       <artifactId>h2</artifactId>
       <version>1.4.200</version>
     </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.5.9</version>
+    </dependency>
   </dependencies>
 
   <build>

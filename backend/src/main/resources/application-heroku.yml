@@ -9,6 +9,14 @@ spring:
     hibernate:
       ddl-auto: update
 
+# Be explicit about springdoc being enabled in this profile.
+# https://springdoc:org/#disabling-the-swagger-ui
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
 server:
   # Heroku provides a port number in the env variable PORT.
   # This env variable is automatically created by Heroku.

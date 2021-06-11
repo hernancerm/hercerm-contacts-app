@@ -13,6 +13,14 @@ spring:
       enabled: true
       path: /console
 
+# Be explicit about springdoc being enabled in this profile.
+# https://springdoc:org/#disabling-the-swagger-ui
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    enabled: true
+
 server:
   port: 8080
   baseUrl: http://localhost:${server.port}
