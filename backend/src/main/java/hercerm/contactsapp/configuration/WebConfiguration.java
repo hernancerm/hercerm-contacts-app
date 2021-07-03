@@ -15,6 +15,10 @@ public class WebConfiguration {
             public void addCorsMappings(CorsRegistry registry) {
                 // Enable CORS globally for the dev server
                 registry.addMapping("/api/*").allowedOrigins("http://localhost:8081");
+
+                // This implementation only allows "simple" methods (GET, HEAD, POST). To allow
+                // other HTTP methods look at allowedMethods:
+                // https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/CorsRegistration.html#allowedMethods-java.lang.String...-
             }
         };
     }
