@@ -14,11 +14,13 @@ spring:
       path: /console
 
 # Be explicit about springdoc being enabled in this profile.
-# https://springdoc:org/#disabling-the-swagger-ui
+# Documentation: https://springdoc.org/
 springdoc:
   swagger-ui:
+    path: /swagger-ui.html
     enabled: true
   api-docs:
+    path: /openapi3.json
     enabled: true
 
 server:
